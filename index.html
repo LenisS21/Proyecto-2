@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatas</title>
+
+    <link rel="icon" href="photo.jpg" type="img/jpg">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css">
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+    <!--<h1 id="titulo">bienvenido </h1>
+    <h3>By Lenis Stevez</h3>
+        <a href="https://www.youtube.com/watch?v=Vyo9OEN3hpw" target="_blank" class="button">Curso Diseño Web </a>
+    
+    <button id="sintetizar" onclick="sintetizarMensaje()">mensaje de voz</button>
+    -->
+    
+    <div id = "menu">
+        <h1 id="Menu">Menu</h1>
+        
+        <br><br><br><br><br>
+        <h2 id="h2I">Idioma
+            <ul id="menuIdioma">
+                <li><a href="#" data-idioma="es" onclick="cambiarIdioma('es')">Español</a></li>
+                <li><a href="#" data-idioma="en" onclick="cambiarIdioma('en')">English</a></li>
+                <li><a href="#" data-idioma="pt" onclick="cambiarIdioma('pt')">Português</a></li>
+              </ul>
+        </h2>
+        
+        <h2 id="historialboton">Historial</h2> 
+    </div>
+    
+    <div class="main-content">
+        <h1 id="titulo" data-section="app">
+            Automata
+        </h1>
+        <h2 id="barraDelLenguaje" class="plb" data-section="app">Ingresa aquí:</h2>
+        <input id="palabra" type="text" class="plb">
+        <button class="plb" onclick="validar()" id="validador">Validar</button>
+        <div id="resultado" class="plb"></div>
+        
+        <div>
+            <input type="range" min="100" max="1000" value="50" class="velocidad">
+            <h2 id="Mvelocidad">Velocidad</h2>
+        </div>
+        <svg id="grafo">
+        </svg> 
+    </div>    
+</body>
+    <script src="../Lenguajes/idiomas.js"></script>
+    <script src="script.js"></script>
+</html>
