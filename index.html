@@ -25,7 +25,7 @@
         <h1 id="Menu">Menu</h1>
         
         <br><br><br><br><br>
-        <h2 id="h2I">Idioma
+        <h2 id="h2I" onmouseover="sintetizarMensaje('Menu de idiomas', 'h2I')">Idioma
             <ul id="menuIdioma">
                 <li><a href="#" data-idioma="es" onclick="cambiarIdioma('es')">Español</a></li>
                 <li><a href="#" data-idioma="en" onclick="cambiarIdioma('en')">English</a></li>
@@ -41,13 +41,15 @@
             Automata
         </h1>
         <h2 id="barraDelLenguaje" class="plb" data-section="app">Ingresa aquí:</h2>
-        <input id="palabra" type="text" class="plb">
+        <input id="palabra" type="text" class="plb" onmouseenter="sintetizarMensaje('Ingrese palabra a validar', 'palabra')">
         <button class="plb" onclick="validar()" id="validador">Validar</button>
-        <div id="resultado" class="plb"></div>
+        <div id="resultado"></div>
         
-        <div>
-            <input type="range" min="100" max="1000" value="50" class="velocidad">
-            <h2 id="Mvelocidad">Velocidad</h2>
+        <h2 id="Mvelocidad">Velocidad</h2>
+        <div id="vspeed">
+            <span id="rangeValue">0</span>
+            <input class="range" type="range" min="0" max="1000" value="0" class="velocidad"
+            onchange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></input>
         </div>
         <svg id="grafo">
         </svg> 
@@ -55,4 +57,5 @@
 </body>
     <script src="../Lenguajes/idiomas.js"></script>
     <script src="script.js"></script>
+    <script type="module" src="historial.js"></script>
 </html>

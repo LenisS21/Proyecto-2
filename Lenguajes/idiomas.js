@@ -39,10 +39,8 @@ var idiomas = {
   };
 
   function cambiarIdioma(idioma) {
-    // Obtener los datos de idioma correspondientes del objeto 'idiomas'
     var datosDeIdioma = idiomas[idioma].app;
   
-    // Actualizar los elementos de la página web con los datos de idioma correspondientes
     document.querySelector("#Menu").textContent = datosDeIdioma.Menu;
     //document.querySelector("#h2I").textContent = datosDeIdioma.h2I;
     document.querySelector("#historialboton").textContent = datosDeIdioma.historialboton;
@@ -52,7 +50,6 @@ var idiomas = {
     document.querySelector("#Mvelocidad").textContent = datosDeIdioma.Mvelocidad;
     
     
-    // Cambiar la clase del enlace de idioma correspondiente para indicar que es el idioma actual
     document.querySelectorAll("#menuIdioma li").forEach(function(li) {
       li.classList.remove("active");
     });
@@ -62,7 +59,7 @@ var idiomas = {
   
   document.querySelectorAll("#menuIdioma li a").forEach(function(enlace) {
     enlace.addEventListener("click", function(e) {
-      e.preventDefault(); // Prevenir la acción predeterminada del enlace
+      e.preventDefault();
       cambiarIdioma(enlace.getAttribute("data-idioma"));
     });
   });

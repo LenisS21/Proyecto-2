@@ -1,12 +1,11 @@
-function sintetizarMensaje() {
-    // crea un objeto del sintetizador de voz
-    let sintetizador = window.speechSynthesis;
-  
-    // crea un mensaje de voz
-    let mensaje = new SpeechSynthesisUtterance("Palabra validada");
-  
-    // sintetiza el mensaje de voz
-    sintetizador.speak(mensaje);
+function sintetizarMensaje(texto, elemento) {
+  let sintetizador = window.speechSynthesis;
+
+  mensaje = new SpeechSynthesisUtterance(texto);
+
+  sintetizador.speak(mensaje);
+
+  document.getElementById(elemento).focus();
 }
 
 const grafo = {
@@ -28,26 +27,29 @@ const grafo = {
   estadoAceptacion: ["q7"],
 };
 
-/*const animacion = {
-  velocidad: 500, // en milisegundos
-  espera: 500, // en milisegundos
-};*/
-const barraVelocidad = document.querySelector('.velocidad');
+//const barraVelocidad = document.querySelector('.velocidad');
 const animacion = {
-  velocidad: 1000, // en milisegundos
-  espera: 2000, // en milisegundos
+  velocidad: 1000,
+  espera: 2000,
 };
 
-barraVelocidad.addEventListener('input', () => {
+function rangeSlide(value){
+  document.getElementById('rangeValue').innerHTML = value
+  animacion.velocidad = value
+  animacion.espera = value;
+}
+
+/*barraVelocidad.addEventListener('input', () => {
   const valor = barraVelocidad.value;
-  animacion.velocidad = valor;
-  animacion.espera = valor;
-})
+  rangeSlide(valor);
+})*/
+
+
 
   const svg = d3.select("svg");
 
   let n=0
-  let y = 250; // variable para la posición vertical de los estados
+  let y = 250;
   
   let numTransiciones = 0;
   const transiciones = svg
@@ -72,21 +74,21 @@ barraVelocidad.addEventListener('input', () => {
     .append("g")
     .attr("class", "estado")
     .attr("transform", (d, i) => {
-        const posicion = `translate(${(i + 1) * 140},${y})`; // posición horizontal fija en 150
-        y -= 13; // aumentar en 10 la posición vertical
+        const posicion = `translate(${(i + 1) * 140},${y})`;
+        y -= 13;
         return posicion;
     });
 
   estados
     .append("circle")
-    .attr("r", 0) // Inicialmente, el radio del círculo es cero
+    .attr("r", 0)
     .attr("fill", "lightblue")
     .attr("stroke", "black")
     .attr("stroke-width", 2)
-    .transition() // Inicia la transición
-    .duration(1000) // Duración de la transición en milisegundos
-    .ease(d3.easeBounceOut) // Función de interpolación
-    .attr("r", 30); // El radio final del círculo es 30
+    .transition()
+    .duration(1000)
+    .ease(d3.easeBounceOut)
+    .attr("r", 30);
 
   estados
     .append("text")
@@ -129,7 +131,6 @@ barraVelocidad.addEventListener('input', () => {
     .text((d) => d.simbolo)
     .attr("text-anchor", "middle");
 
-  // Creamos los círculos que representan los estados de aceptación
   const estadoAceptacion = svg.selectAll(".estadoAceptacion")
     .data(grafo.estadoAceptacion)
     .enter()
@@ -142,34 +143,28 @@ barraVelocidad.addEventListener('input', () => {
     .attr("fill", "white")
     .attr("stroke", "red");
 
-  let transicionesValidas = [];
+
+let transicionesValidas = [];
 
 function validarPalabra(palabra) {
     let posicionActual = grafo.estados[0]
-    transicionesValidas = [];
-    // Recorremos la palabra y actualizamos la posición actual en función de las transiciones del grafo
+    let transicionesValidas = [];
     for (let i = 0; i < palabra.length; i++) {
-      // Buscamos la transición que corresponde a la letra actual y el estado actual
       const transicion = grafo.transiciones.find(t => t.origen === posicionActual && t.simbolo === palabra[i]);
       if (transicion) {
-        // Actualizamos la posición actual al estado destino de la transición
         posicionActual = transicion.destino;
         transicionesValidas.push(transicion)
         
       } else {
-        // Si no hay una transición para la letra actual y el estado actual, la palabra no es aceptada
         console.log("La palabra no es aceptada");
-        
       }
     }console.log(transicionesValidas)
   
-    // Si la posición actual es un estado de aceptación, la palabra es aceptada
     if (grafo.estadoAceptacion.includes(posicionActual)) {
       console.log("La palabra es aceptada");
       return "Palabra aceptada";
     } else {
       console.log("La palabra no es aceptada");
-      
       return "Palabra rechazada";
     }
   }
@@ -195,13 +190,16 @@ function validar() {
     divResultado.innerHTML = resultado;
 
     if(resultado == "Palabra aceptada"){
-      console.log("good")
-      animarTransicion(d3.selectAll(transiciones.nodes()[0]))
+      animarTransicion(d3.select(transiciones.nodes()[0]))
+      localStorage.setItem(resultado, palabra)
+      sintetizarMensaje(divResultado.textContent, "resultado")
     }else{
-      console.log("mal")
+      localStorage.setItem(resultado, palabra)
+      sintetizarMensaje(divResultado.textContent, "resultado")
     }
   }
 
+  
 
   
   

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
-
 h3{
     text-align: center;
     color: #fff;
@@ -88,6 +87,7 @@ div{
 
 input{
     border: 2px solid #5ddcff;
+    border-radius: 5px;
 }
 
 .velocidad {
@@ -112,12 +112,11 @@ input{
 
 
 #menu{
-	/* Desktop - 1 */
-position: absolute;
-height: 760px;
-width: 246px;
-border: solid black;
-background-color: #3c67e3;
+    position: absolute;
+    height: 760px;
+    width: 246px;
+    border: solid black;
+    background-color: #3c67e3;
 
 }
 
@@ -163,15 +162,18 @@ background-color: #3c67e3;
     position: relative;
     right: 300px;
     top: 50px;
-    
 }
 
 #Mvelocidad{
     position: relative;
-    top: -77px;
-    right: 30px;
-        
-    
+    top: -50px;
+}
+
+#vspeed{
+    position: relative;
+    top: -50px;
+    width: 350px;
+    left: 340px;
 }
 
 #titulo{
@@ -192,8 +194,8 @@ background-color: #3c67e3;
     left: 100%;
     z-index: 1;
     list-style: none;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: #c5fcfc;
+    border: 1px solid #5f5c5c;
     padding: 0;
     margin: 0;
   }
@@ -201,7 +203,7 @@ background-color: #3c67e3;
   #menuIdioma li {
     display: block;
     padding: 5px 10px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #969696;
   }
   
   #menuIdioma li:last-child {
@@ -210,7 +212,7 @@ background-color: #3c67e3;
   
   #menuIdioma li a {
     display: block;
-    color: #333;
+    color: black;
     text-decoration: none;
   }
   
@@ -227,5 +229,15 @@ background-color: #3c67e3;
     top: 0;
     left: 100%;
   }
-  
 
+#resultado{
+    font-family: 'Poppins', sans-serif;
+    position: absolute;
+    top: 300px;
+    left: 302px;
+    width: 353px;
+
+    font-size: 20px;
+    text-shadow: 0.05em 0 0 rgba(100, 99, 99, 0.75),
+                 
+}
